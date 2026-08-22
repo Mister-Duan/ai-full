@@ -13,6 +13,7 @@ async def test_connection():
     except Exception as e:
         print(f"❌ 连接失败: {e}")
     finally:
+        print("222")
         await engine.dispose()
 
 

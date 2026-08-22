@@ -7,12 +7,7 @@ requires-python = ">=3.14"
 dependencies = []
 
 [tool.uv.workspace]
-members = [
-    "packages/*",
-    "apps/*"
-]
+members = ["packages/*", "apps/*"]
 
 [dependency-groups]
-dev = [
-    "debugpy>=1.8.21",
-]
+dev = ["debugpy>=1.8.21"]
