@@ -1,3 +1,5 @@
+from collections.abc import AsyncGenerator
+
 from sqlalchemy.ext.asyncio import (
     AsyncEngine,
     AsyncSession,
@@ -15,7 +17,6 @@ def get_engine() -> AsyncEngine:
 
     if _engine is None:
         url = f"postgresql+asyncpg://{db_settings.user}:{db_settings.password}@{db_settings.host}:{db_settings.port}/{db_settings.name}"
-        print(f"Connecting to database with URL: {url}")  # Debugging line to print the connection URL
         _engine = create_async_engine(
             url, pool_size=10, max_overflow=20, pool_pre_ping=True, echo=False
         )
@@ -38,3 +39,7 @@ def get_session_factory() -> async_sessionmaker[AsyncSession]:
         )
 
     return _session_factory
+
+
+def get_db():
+    return get_session_factory()()
