@@ -1,0 +1,14 @@
+{
+  "python.defaultInterpreterPath": "/Users/duanshuaishuai/Desktop/AI全栈/python-framework/duyi-service/.venv/bin/python",
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter",
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+  },
+  "code-runner.executorMap": {
+    // 这里要填写 python 的绝对路径
+    // "python": "/Users/duanshuaishuai/.pyenv/shims/python -u",
+    "python": "uv run",
+  },
+  // "python.analysis.extraPaths": ["./src", "./.venv/lib"]
+}
