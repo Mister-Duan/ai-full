@@ -1,10 +1,13 @@
 from fastapi import FastAPI
 from fastapi.exceptions import RequestValidationError
 from starlette.exceptions import HTTPException
+from app.core.middleware import register_middleware
 
 from app.core.config import common_settings, web_settings
 from app.exception.handler.docs import generate_error_docs
 from app.exception.handler.handlers import exception_handler
+from app.core.openapi import setup_openapi
+
 
 app = FastAPI(
     title=web_settings.app_name,
@@ -15,6 +18,8 @@ app = FastAPI(
         None if common_settings.environment == "production" else "/openapi.json"
     ),
 )
+setup_openapi(app)
+register_middleware(app)
 
 # 注册全局异常处理器（覆盖 Starlette/FastAPI 内置处理器 + 兜底未知异常）
 app.add_exception_handler(RequestValidationError, exception_handler)
