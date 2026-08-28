@@ -41,5 +41,14 @@ def get_session_factory() -> async_sessionmaker[AsyncSession]:
     return _session_factory
 
 
-def get_db():
-    return get_session_factory()()
+async def get_db() -> AsyncGenerator[AsyncSession, None]:
+    """请求级 Session：成功则 commit，异常则 rollback，结束时关闭。"""
+    session = get_session_factory()()
+    try:
+        yield session
+        await session.commit()
+    except Exception:
+        await session.rollback()
+        raise
+    finally:
+        await session.close()

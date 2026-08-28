@@ -16,3 +16,10 @@ members = [
 dev = [
     "debugpy>=1.8.21",
 ]
+
+[tool.coverage.run]
+omit = [
+    "*/app/model/main.py",
+    "*/app/service/main.py",
+]
+

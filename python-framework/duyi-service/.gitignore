@@ -23,3 +23,12 @@ build/
 
 # db
 .db
+
+# tem
+/temp
+/tmp
+
+
+# test
+.coverage
+htmlcov/
