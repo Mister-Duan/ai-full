@@ -4,11 +4,18 @@ import hashlib
 import hmac
 import json
 import os
+import warnings
 import uuid
 from dataclasses import dataclass, field
 from datetime import datetime, timedelta, timezone
 from typing import Callable
 
+warnings.filterwarnings(
+    "ignore",
+    message=r".*invalid escape sequence.*",
+    category=SyntaxWarning,
+    module=r"oss2\.api",
+)
 import oss2
 
 from duyi_utils.shared.file_util import get_suffix
