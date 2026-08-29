@@ -1,0 +1,8 @@
+{
+  "expiration": "2026-06-26T09:06:02.000Z",
+  "conditions": [
+    ["eq", "$key", "uploads/2026/06/26/ed3f0bc6466c49f09c386ea40015b136.png"],
+    ["eq", "$Content-Type", "image/png"],
+    ["content-length-range", 0, 1024]
+  ]
+}
