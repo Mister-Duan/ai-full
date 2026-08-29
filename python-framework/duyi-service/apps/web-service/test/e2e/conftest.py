@@ -83,6 +83,9 @@ def _stop_server():
 
 
 def pytest_sessionstart(session):
+    if session.config.option.collectonly:
+        return
+
     with _create_cur() as cur:
         cur.execute(
             f"SELECT pg_terminate_backend(pg_stat_activity.pid) "
@@ -109,6 +112,9 @@ def pytest_sessionstart(session):
 
 
 def pytest_sessionfinish(session, exitstatus):
+    if session.config.option.collectonly:
+        return
+
     _stop_server()
 
     with _create_cur() as cur:
